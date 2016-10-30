@@ -18,7 +18,7 @@ object MvelAgeRule {
 case class MvelAgeRule(person: Person) {
 
   @Priority
-  def priority = 1
+  def priority = configuration.getInt("shop.rules.age.priority")
 
   @Condition
   def evaluate(): Boolean = {
