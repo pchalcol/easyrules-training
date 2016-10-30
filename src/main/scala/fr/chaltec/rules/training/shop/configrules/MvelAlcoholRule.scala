@@ -20,13 +20,13 @@ case class MvelAlcoholRule(person: Person) {
   def priority = configuration.getInt("shop.rules.alcohol.priority")
 
   @Condition
-  def evaluate(): Boolean = {
+  def when(): Boolean = {
     val data = Maps.map[String, Object]("isAdult", Boolean.box(person.adult))
     MVEL.executeExpression(MvelAlcoholRule.expression, data).asInstanceOf[Boolean]
   }
 
   @Action
-  def execute() = {
+  def thenExecute() = {
     println(
       s"""
          |Shop:

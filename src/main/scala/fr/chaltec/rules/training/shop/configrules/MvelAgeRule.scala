@@ -21,7 +21,7 @@ case class MvelAgeRule(person: Person) {
   def priority = configuration.getInt("shop.rules.age.priority")
 
   @Condition
-  def evaluate(): Boolean = {
+  def when(): Boolean = {
     val data = Maps.map[String, Object](
     "age", Int.box(person.age),
     "majority", Int.box(MvelAgeRule.ADULT_AGE))
@@ -30,7 +30,7 @@ case class MvelAgeRule(person: Person) {
   }
 
   @Action
-  def execute() = {
+  def thenExecute() = {
     person.adult = true
     println(s"Person ${person.name} has been marked as adult")
   }
